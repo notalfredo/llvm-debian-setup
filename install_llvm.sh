@@ -14,6 +14,10 @@ sudo apt-get install zlib1g-dev
 
 sudo apt install pkg-config
 
+sudo apt install ninja-build
+
+sudo apt install clang
+
 which python3 &> /dev/null
 
 if [ $? -eq 0 ]; then
@@ -61,6 +65,33 @@ else
 fi
 
 
+#Installing llvm
+
+
+
+if [ -d "llvm-project" ]; then
+    echo "Folder 'llvm-project' exist in the current directory"
+    cd llvm-project
+else
+    git clone https://github.com/llvm/llvm-project.git
+    cd llvm-project
+fi
+
+if [ -d "build" ]; then
+    read -p "Do you want to remove the conents of the 'build' folder (yes/no): " response
+    if [ "$response" = "yes" ]; then
+        rm -rf build/*
+	echo "Contents of the 'build' folder have been removed"
+    fi
+    cd build
+    sudo cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_PARALLEL_LINK_JOBS=1 ../llvm/
+    sudo ninja
+else
+    mkdir build
+    cd build
+    sudo cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_PARALLEL_LINK_JOBS=1 ../llvm/
+    sudo ninja
+fi
 
 
 echo "//============================================="
