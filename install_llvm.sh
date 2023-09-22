@@ -48,6 +48,8 @@ if [ "$NEED_INSTALL" = true ]; then
 
      sudo apt remove cmake -y
      
+     cd ~/
+
      wget https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz
 
      tar -zxvf cmake-3.24.2.tar.gz
@@ -68,6 +70,7 @@ fi
 #Installing llvm
 
 
+cd ~/
 
 if [ -d "llvm-project" ]; then
     echo "Folder 'llvm-project' exist in the current directory"
@@ -78,7 +81,7 @@ else
 fi
 
 if [ -d "build" ]; then
-    read -p "Do you want to remove the conents of the 'build' folder (yes/no): " response
+    read -p "Do you want to remove the contents of the 'build' folder (yes/no): " response
     if [ "$response" = "yes" ]; then
         rm -rf build/*
 	echo "Contents of the 'build' folder have been removed"
@@ -93,10 +96,10 @@ else
     sudo ninja
 fi
 
-
 echo "//============================================="
 echo "//Done					     "
 echo "//============================================="
 
 python3 --version
 cmake --version
+llvm-config --version
