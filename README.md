@@ -1,3 +1,5 @@
+# LLVM ez setup (debian)
+
 1. `chmod +x install_llvm.sh`
 2. `./install_llvm.sh`
 
