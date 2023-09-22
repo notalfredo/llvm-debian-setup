@@ -4,10 +4,6 @@
 2. `./install_llvm.sh`
 
 
-
-./install_llvm.sh: line 105: llvm-config: command not found
-
-
 > :warning: **If your installation was success full but you get the following message `./install_llvm.sh: line 105: llvm-config: command not found
 ` from the bash script**: Add the bin folder path to your `~/.bashrc` file.
 ```bash
